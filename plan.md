@@ -4,47 +4,52 @@ This plan tracks the work needed to take NetGuard from its current local app to 
 
 ## 1. Finish the Packet Explorer experience
 
-- Resolve remaining low-contrast text in packet metadata, upload status, filters, and selectors.
-- Check the page in both PCAP and CSV modes at normal and narrow window widths.
-- Make empty, invalid, and large-file states clear to the user.
-- **Done when:** labels and values are readable on every background and interactive state, and the main Packet Explorer actions work end to end.
+1.1 Fix contrast for packet values, filenames, filters, selectors, and their hover/focus states.  
+1.2 Inspect PCAP and CSV modes at desktop and narrow window widths.  
+1.3 Check empty, invalid, and oversized-file messages.  
+**Done when:** all text is readable and the key controls work in both modes.
 
-## 2. Verify PCAP analysis end to end
+## 2. Verify PCAP analysis
 
-- Load `data/sample_traffic.pcap` and upload a separate capture.
-- Check packet parsing, traffic summary, packet filters, packet detail selection, and anomaly association.
-- Check alert persistence and status changes in the SQLite database.
-- **Done when:** both the supplied capture and a valid uploaded capture complete without errors and show consistent packet and alert details.
+2.1 Load the supplied `data/sample_traffic.pcap`.  
+2.2 Upload a second valid capture.  
+2.3 Check parsing, traffic summary, filters, and packet detail selection.  
+2.4 Check anomaly association, alert persistence, and alert status changes.  
+**Done when:** both captures produce consistent packet and alert details without errors.
 
 ## 3. Verify CSV machine-learning analysis
 
-- Load `data/sample_traffic_test.csv` and upload a compatible CSV.
-- Check missing-column and invalid-value handling, predictions, confidence values, and optional ground-truth metrics.
-- Confirm the saved model works in the supported Python and scikit-learn environment.
-- **Done when:** supported CSV inputs complete without errors and incompatible inputs receive a useful explanation.
+3.1 Load `data/sample_traffic_test.csv`.  
+3.2 Upload a compatible CSV and inspect predictions and confidence values.  
+3.3 Check missing columns, invalid values, and ground-truth metrics.  
+3.4 Confirm the model loads in the documented Python/scikit-learn environment.  
+**Done when:** supported data completes without errors and unsupported data gets a useful explanation.
 
 ## 4. Add repeatable checks
 
-- Add unit tests for PCAP feature extraction, anomaly rules, CSV preprocessing, and database operations.
-- Add a Streamlit app smoke test for navigation and key page states where practical.
-- **Done when:** the checks run from documented commands and cover the core analysis paths.
+4.1 Add tests for packet parsing and anomaly rules.  
+4.2 Add tests for CSV preprocessing and model inference.  
+4.3 Add tests for database operations.  
+4.4 Add a Streamlit smoke test for navigation and core page states where practical.  
+**Done when:** checks run from documented commands and cover the core analysis paths.
 
 ## 5. Review reliability and safe input handling
 
-- Review upload limits, CSV/PCAP parsing errors, database writes, and user-provided filenames and values.
-- Confirm large inputs fail safely and do not leave the app in a broken session state.
-- **Done when:** expected bad inputs fail cleanly and do not crash or corrupt stored data.
+5.1 Review upload size limits and PCAP/CSV parser errors.  
+5.2 Review database writes and uploaded filename/value handling.  
+5.3 Confirm invalid and large inputs fail safely without breaking session state.  
+**Done when:** expected bad inputs fail cleanly without crashes or corrupted stored data.
 
 ## 6. Complete documentation and repository setup
 
-- Document environment setup, launch commands, sample assets, model training, and test commands in `README.md`.
-- Record dataset/model sources and any applicable licenses or attribution requirements.
-- Confirm `.gitignore` excludes local environments, caches, and the local database while retaining intentional sample assets.
-- **Done when:** a fresh checkout can be set up by following the README and repository assets have clear provenance.
+6.1 Document environment setup, launch, sample assets, model training, and checks in `README.md`.  
+6.2 Record dataset/model sources and applicable license or attribution requirements.  
+6.3 Check `.gitignore` excludes local environments, caches, and the local database while retaining intended sample assets.  
+**Done when:** a fresh checkout can be set up from the README and asset provenance is clear.
 
 ## 7. Prepare a release
 
-- Run the documented checks and perform one final PCAP and CSV walkthrough.
-- Review GitHub contents and commit history; tag a release if desired.
-- Choose a deployment target only if the project needs a publicly hosted website.
-- **Done when:** the release state is reproducible and its known limitations are documented.
+7.1 Run documented checks and do a final PCAP/CSV walkthrough.  
+7.2 Review GitHub contents and commit history; tag a release if desired.  
+7.3 Choose a deployment target only if public hosting is needed.  
+**Done when:** the release is reproducible and its known limitations are documented.
