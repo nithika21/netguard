@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # NetGuard
 
 ## Project structure
@@ -24,7 +23,3 @@ Run these from the project root:
 python -m backend.generate_sample_pcap
 python -m backend.train_model
 ```
-=======
-# netguard
-NetGuard is a Streamlit app for analyzing network traffic from PCAP files and CSV flow datasets. It combines packet analysis and rule-based anomaly detection with a Random Forest classifier to help inspect suspicious traffic and alerts.
->>>>>>> 3b2ba5349483822c9618679c207a4ae82a80db8b
